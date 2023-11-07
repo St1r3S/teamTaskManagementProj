@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card-body">
+        <div class="col-xs-12 text-center">
+            <h4>Tasks</h4>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" style="border: none">Title</th>
+                <th scope="col" style="border: none">Additional info</th>
+                <th scope="col" style="border: none">Priority</th>
+                <th scope="col" style="border: none">Is complete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.additional_info }}</td>
+                    <td>{{ task.priority }}</td>
+                    <td>
+                        {% if task.is_completed %}
+                            <a type="button" class="btn btn-success" style="width: 40px"
+                               href="/task-toggle-complete/{{ task.task_id }}">&#x2713</a>
+                        {% else %}
+                            <a type="button" class="btn btn-danger" style="width: 40px"
+                               href="/task-toggle-complete/{{ task.task_id }}">🗙</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a type="button" class="btn btn-info" href="/task-update/{{ task.task_id }}">Update</a>
+                        <a type="button" class="btn btn-danger" href="/task-delete/{{ task.task_id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a type="button" class="btn btn-success" href="{% url 'task-create' %}">Create</a>
+    </div>
+{% endblock %}

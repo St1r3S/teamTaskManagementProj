@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card-body" style="max-width: 500px">
+        <h4>Update Worker's info</h4>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <a type="button" class="btn btn-danger" href="{% url 'worker-list' %}">Cancel</a>
+            <button type="submit" class="btn btn-success">Update</button>
+        </form>
+    </div>
+{% endblock %}

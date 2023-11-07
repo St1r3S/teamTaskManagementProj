@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card-body">
+        <div class="col-xs-12 text-center">
+            <h4>Worker</h4>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" style="border: none">First name</th>
+                <th scope="col" style="border: none">Last name</th>
+                <th scope="col" style="border: none">Role</th>
+                <th scope="col" style="border: none">Is busy</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for worker in workers %}
+                <tr>
+                    <td>{{ worker.first_name }}</td>
+                    <td>{{ worker.last_name }}</td>
+                    <td>{{ worker.role }}</td>
+                    <td>
+                        {% if worker.is_busy %}
+                            <a type="button" class="btn btn-success" style="width: 40px"
+                               href="/worker-toggle-busy/{{ worker.worker_id }}">&#x2713</a>
+                        {% else %}
+                            <a type="button" class="btn btn-danger" style="width: 40px"
+                               href="/worker-toggle-busy/{{ worker.worker_id }}">🗙</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a type="button" class="btn btn-info" href="/worker-update/{{ worker.worker_id }}">Update</a>
+                        <a type="button" class="btn btn-danger" href="/worker-delete/{{ worker.worker_id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a type="button" class="btn btn-success" href="{% url 'worker-create' %}">Create</a>
+    </div>
+{% endblock %}
