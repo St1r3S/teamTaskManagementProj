@@ -1,0 +1,20 @@
+<!-- child_template.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Your specific content for this page -->
+    <div class="card mt-5" >
+        <div class="text-center mt-5 " style="margin: 0!important;" >
+            <div class="card-header">
+                <h5 class="card-title">Sign in with Google</h5>
+            </div>
+            <div class="card-body">
+                <p class="lead">Do you understand that I'm not in charge of your data privacy ✪ ω ✪</p>
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Continue</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,8 +1,13 @@
-from django.urls import path
-
+from django.urls import path, include
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
+    path('accounts/', include('allauth.urls')),
+    path('sign_out/', views.sign_out, name='sign_out'),
+    path('start_page/', views.start_page, name='start_page'),
+
     path('task-list', views.task_list, name='task-list'),
     path('task-create', views.task_create, name='task-create'),
     path('task-update/<str:task_id>', views.task_update, name='task-update'),
